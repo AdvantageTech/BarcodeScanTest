@@ -59,6 +59,15 @@ namespace BarcodeScanTest
                 try
                 {
                     dataGridView.DataSource = csv.dt;
+                    string field;
+                    string output = File.ReadAllText(txtDataFolder.Text + "\\Input.html");
+                    for (int i = 0; i <= 12; i++)
+                    {
+                        field = "@FIELD" + i.ToString();
+                        output = output.Replace(field, dataGridView.Rows[0].Cells[i].Value.ToString());
+                        File.WriteAllText(txtDataFolder.Text + "\\Output.html", output);
+                    }
+                    System.Diagnostics.Process.Start(txtDataFolder.Text + "\\Output.html");
                 }
                 catch (Exception ex)
                 {
@@ -127,6 +136,26 @@ namespace BarcodeScanTest
                 txtDataFolder.Text = openFileDialog.SelectedPath.ToString();
                 txtBarcode.Focus();
             }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
